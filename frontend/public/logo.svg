@@ -1,0 +1,47 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with gradient effect -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE5CC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <circle cx="60" cy="60" r="58" fill="url(#bgGradient)" stroke="#FF8C42" stroke-width="2"/>
+  
+  <!-- Family Icon - Two People with Heart -->
+  <g transform="translate(25, 20)">
+    <!-- Person 1 (Left) -->
+    <circle cx="15" cy="18" r="11" fill="#FFFFFF"/>
+    <path d="M 8 32 Q 8 26 15 26 Q 22 26 22 32 L 22 40 L 8 40 Z" fill="#FFFFFF"/>
+    
+    <!-- Person 2 (Right) -->
+    <circle cx="50" cy="18" r="11" fill="#FFFFFF"/>
+    <path d="M 43 32 Q 43 26 50 26 Q 57 26 57 32 L 57 40 L 43 40 Z" fill="#FFFFFF"/>
+    
+    <!-- Heart between them -->
+    <path d="M 28 28 Q 28 24 32 24 Q 36 24 36 28 Q 36 32 32 38 Q 28 32 28 28" fill="url(#heartGradient)"/>
+  </g>
+  
+  <!-- Utensils at bottom - Fork and Spoon -->
+  <g transform="translate(45, 70)">
+    <!-- Fork -->
+    <rect x="8" y="0" width="2.5" height="18" fill="#FFFFFF" rx="1"/>
+    <rect x="4" y="0" width="12" height="3" fill="#FFFFFF" rx="1"/>
+    <rect x="5" y="3" width="10" height="2" fill="#FFFFFF" rx="1"/>
+    
+    <!-- Spoon -->
+    <ellipse cx="25" cy="7" rx="3.5" ry="6" fill="#FFFFFF"/>
+    <rect x="24" y="7" width="2.5" height="11" fill="#FFFFFF" rx="1"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="18" cy="18" r="2.5" fill="#FFE5CC" opacity="0.8"/>
+  <circle cx="102" cy="22" r="2.5" fill="#FFE5CC" opacity="0.8"/>
+  <circle cx="12" cy="98" r="2.5" fill="#FFE5CC" opacity="0.8"/>
+  <circle cx="108" cy="102" r="2.5" fill="#FFE5CC" opacity="0.8"/>
+</svg>
