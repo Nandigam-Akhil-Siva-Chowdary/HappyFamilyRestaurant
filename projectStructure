@@ -1,0 +1,29 @@
+family-restaurant-mern/
+├── backend/
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── MenuItem.js
+│   │   ├── Order.js
+│   │   ├── Chef.js
+│   │   └── Contact.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── menu.js
+│   │   ├── orders.js
+│   │   ├── chefs.js
+│   │   └── contact.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── config/
+│   │   └── db.js
+│   ├── uploads/
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── redux/
+│       ├── utils/
+│       └── App.js
+└── package.json
