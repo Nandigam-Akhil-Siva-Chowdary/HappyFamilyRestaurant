@@ -27,7 +27,7 @@ const AdminMenu = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/menu', {
+      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ const AdminMenu = () => {
   const toggleAvailability = async (itemId, currentStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/menu/${itemId}/availability`, {
+      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/menu/${itemId}/availability`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const AdminMenu = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/menu/${itemId}`, {
+      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/menu/${itemId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -292,8 +292,8 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const url = item
-        ? `http://localhost:5000/api/menu/${item._id}`
-        : 'http://localhost:5000/api/menu';
+        ? `https://happyfamilyrestaurant4.onrender.com/api/menu/${item._id}`
+        : 'https://happyfamilyrestaurant4.onrender.com/api/menu';
       
       const method = item ? 'PUT' : 'POST';
 

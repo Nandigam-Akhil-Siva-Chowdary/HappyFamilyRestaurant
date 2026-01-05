@@ -18,8 +18,8 @@ const AdminContactMessages = () => {
     try {
       const token = localStorage.getItem('token');
       const url = filter === 'all' 
-        ? 'http://localhost:5000/api/contact'
-        : `http://localhost:5000/api/contact?read=${filter === 'read'}`;
+        ? 'https://happyfamilyrestaurant4.onrender.com/api/contact'
+        : `https://happyfamilyrestaurant4.onrender.com/api/contact?read=${filter === 'read'}`;
       
       const response = await fetch(url, {
         headers: {
@@ -43,7 +43,7 @@ const AdminContactMessages = () => {
   const markAsRead = async (messageId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/contact/${messageId}/read`, {
+      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/contact/${messageId}/read`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ const AdminContactMessages = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/contact/${messageId}`, {
+      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/contact/${messageId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

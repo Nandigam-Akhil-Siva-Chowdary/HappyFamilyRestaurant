@@ -26,7 +26,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 // Socket connection
-export const socket = io('http://localhost:5000');
+export const socket = io('https://happyfamilyrestaurant4.onrender.com');
 
 function AppContent() {
   const location = useLocation();

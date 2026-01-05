@@ -16,7 +16,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ const Login = () => {
               First time setup? Register admin account using Postman API:
             </p>
             <code className="block mt-2 p-3 bg-gray-100 rounded text-xs overflow-x-auto">
-              POST http://localhost:5000/api/auth/register
+              POST https://happyfamilyrestaurant4.onrender.com/api/auth/register
               <br />
               {JSON.stringify({
                 name: "Admin Name",
