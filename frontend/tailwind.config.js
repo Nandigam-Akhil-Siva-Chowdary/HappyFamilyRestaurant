@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FF6B35',
-        secondary: '#F7C59F',
-        accent: '#EFEFD0',
-        dark: '#1A535C',
-        light: '#F7FFF7'
+        primary: '#6F4E37', // Coffee Brown
+        secondary: '#D7CCC8', // Latte
+        accent: '#8D6E63', // Mocha
+        dark: '#3E2723', // Dark Espresso
+        light: '#EFEBE9' // Cream
       },
       animation: {
         'bounce-slow': 'bounce 3s linear infinite',

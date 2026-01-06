@@ -40,7 +40,6 @@ const Home = () => {
     'starters': <FaHamburger />,
     'biryanis': <FaFire />,
     'main-course': <FaUtensils />,
-    'desserts': <FaIceCream />,
     'soft-drinks': <FaGlassMartini />,
     'specials': <FaStar />
   };
@@ -49,16 +48,14 @@ const Home = () => {
     'starters': 'Starters',
     'biryanis': 'Biryanis',
     'main-course': 'Main Course',
-    'desserts': 'Desserts',
     'soft-drinks': 'Soft Drinks',
     'specials': 'Specials'
   };
 
   const categoryColors = {
-    'starters': 'bg-gradient-to-br from-orange-400 to-orange-600',
+    'starters': 'bg-gradient-to-br from-amber-600 to-yellow-800',
     'biryanis': 'bg-gradient-to-br from-red-500 to-red-700',
     'main-course': 'bg-gradient-to-br from-yellow-400 to-yellow-600',
-    'desserts': 'bg-gradient-to-br from-pink-400 to-pink-600',
     'soft-drinks': 'bg-gradient-to-br from-blue-400 to-blue-600',
     'specials': 'bg-gradient-to-br from-purple-400 to-purple-600'
   };
@@ -67,13 +64,13 @@ const Home = () => {
     { icon: <FaClock />, title: 'Fast Service', desc: 'Quick preparation' },
     { icon: <FaLeaf />, title: 'Fresh Ingredients', desc: '100% organic' },
     { icon: <FaStar />, title: 'Best Quality', desc: '5-star rated' },
-{ icon: <FaUtensils />, title: 'Dine-In Available', desc: 'Comfortable seating' },
+    { icon: <FaUtensils />, title: 'Dine-In Available', desc: 'Comfortable seating' },
   ];
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary to-orange-600 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-r from-primary to-dark text-white overflow-hidden">
         <div className="container mx-auto px-4 py-20">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -82,10 +79,10 @@ const Home = () => {
             className="max-w-2xl"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Taste the <span className="text-secondary">Tradition</span>
+              Happy <span className="text-secondary">Family restaurant</span>
             </h1>
             <p className="text-xl mb-8">
-              Experience authentic homemade flavors crafted with love by our family chefs since 2010.
+              Experience authentic homemade flavors crafted with love by our family chefs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -107,7 +104,7 @@ const Home = () => {
             </div>
           </motion.div>
         </div>
-        
+
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 3, repeat: Infinity }}
@@ -149,7 +146,7 @@ const Home = () => {
               View All <FaArrowRight />
             </Link>
           </div>
-          
+
           {categories.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-600">Loading categories...</p>
@@ -197,7 +194,7 @@ const Home = () => {
           >
             <Link
               to="/menu"
-              className="inline-block bg-primary text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl"
+              className="inline-block bg-primary text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-dark transition-all shadow-xl"
             >
               Order Now
             </Link>

@@ -16,7 +16,7 @@ const Menu = () => {
   useEffect(() => {
     fetchMenuItems();
     fetchCategories();
-    
+
     // Check for category in URL params
     const categoryParam = searchParams.get('category');
     if (categoryParam) {
@@ -73,7 +73,6 @@ const Menu = () => {
     'starters': 'Starters',
     'biryanis': 'Biryanis',
     'main-course': 'Main Course',
-    'desserts': 'Desserts',
     'soft-drinks': 'Soft Drinks',
     'specials': 'Specials'
   };

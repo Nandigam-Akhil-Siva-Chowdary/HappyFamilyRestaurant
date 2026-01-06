@@ -40,13 +40,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/logo.svg" 
-              alt="Happy Family Restaurant Logo" 
+            <img
+              src="/logo.svg"
+              alt="Happy Family Restaurant Logo"
               className="h-10 w-10"
             />
             <span className="text-2xl font-bold text-gray-800">
-             Happy <span className="text-primary">Family Restaurant</span>
+              Happy <span className="text-primary">Family Restaurant</span>
             </span>
           </Link>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
                 Contact
               </Link>
             </motion.div>
-            
+
             {isAuthenticated ? (
               <>
                 <Link to="/admin" className="text-gray-700 hover:text-primary font-medium">
@@ -119,7 +119,7 @@ const Navbar = () => {
                 </motion.span>
               )}
             </Link>
-            
+
             {/* Flying Cart Animation */}
             <AnimatePresence>
               {cartAnimation && (
@@ -140,10 +140,10 @@ const Navbar = () => {
                     top: '50%',
                   }}
                   animate={{
-                    x: cartIconRef.current 
+                    x: cartIconRef.current
                       ? cartIconRef.current.getBoundingClientRect().left - window.innerWidth / 2 + 20
                       : window.innerWidth - 100,
-                    y: cartIconRef.current 
+                    y: cartIconRef.current
                       ? cartIconRef.current.getBoundingClientRect().top - window.innerHeight / 2 - 20
                       : 20,
                     scale: [1, 0.8, 0.5, 0.3],
@@ -157,8 +157,8 @@ const Navbar = () => {
                   onAnimationComplete={() => setCartAnimation(null)}
                 >
                   {cartAnimation.image ? (
-                    <img 
-                      src={cartAnimation.image} 
+                    <img
+                      src={cartAnimation.image}
                       alt={cartAnimation.name}
                       className="w-full h-full object-cover rounded-full"
                     />
@@ -170,19 +170,30 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700 focus:outline-none"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          {/* Mobile Actions */}
+          <div className="flex items-center space-x-4 md:hidden">
+            <Link to="/cart" className="relative text-gray-700 hover:text-primary transition-colors">
+              <FaShoppingCart className="text-2xl" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">
+                  {cartCount}
+                </span>
               )}
-            </svg>
-          </button>
+            </Link>
+
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 focus:outline-none"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

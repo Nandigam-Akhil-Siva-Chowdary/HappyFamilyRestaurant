@@ -4,9 +4,9 @@ import { FaUtensils, FaPizzaSlice, FaHamburger, FaCookieBite } from 'react-icons
 
 const LoadingSpinner = () => {
   const foodIcons = [FaUtensils, FaPizzaSlice, FaHamburger, FaCookieBite];
-  
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#EFEBE9] to-[#D7CCC8]">
       <div className="relative">
         {foodIcons.map((Icon, index) => (
           <motion.div
@@ -30,14 +30,14 @@ const LoadingSpinner = () => {
             <Icon className="text-4xl text-primary" />
           </motion.div>
         ))}
-        
+
         <motion.div
           className="w-32 h-32 border-4 border-primary border-t-transparent rounded-full"
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         />
       </div>
-      
+
       <motion.div
         className="mt-8 text-center"
         initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ const LoadingSpinner = () => {
       >
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Preparing Your Order</h2>
         <p className="text-gray-600">Good food takes time...</p>
-        
+
         <motion.div
           className="mt-4 flex justify-center space-x-2"
           animate={{ y: [0, -10, 0] }}

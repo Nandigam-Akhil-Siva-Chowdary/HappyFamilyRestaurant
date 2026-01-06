@@ -9,10 +9,10 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app);
+const server = http.createzServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "https://happy-family-restaurant.vercel.app",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });

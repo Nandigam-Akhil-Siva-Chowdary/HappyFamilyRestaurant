@@ -33,7 +33,7 @@ const Contact = () => {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         toast.success(data.message || 'Message sent successfully! We will get back to you soon.');
         setFormData({ name: '', email: '', phone: '', message: '' });
@@ -77,7 +77,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50">
+    <div className="min-h-screen py-12 bg-gradient-to-br from-[#EFEBE9] via-[#D7CCC8] to-[#EFEBE9]">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -95,7 +95,7 @@ const Contact = () => {
               <FaEnvelope className="text-4xl text-white" />
             </div>
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-orange-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-dark bg-clip-text text-transparent">
             Contact Us
           </h1>
           <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
@@ -119,19 +119,19 @@ const Contact = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
               {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.3 }}
-                    whileHover={{ y: -8, scale: 1.03, rotate: 1 }}
-                    className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
-                  >
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+                  whileHover={{ y: -8, scale: 1.03, rotate: 1 }}
+                  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
+                >
                   <div className="flex items-start space-x-4">
                     <motion.div
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.5 }}
-                      className="p-4 bg-gradient-to-br from-primary to-orange-600 text-white rounded-xl shadow-lg group-hover:shadow-xl transition-shadow"
+                      className="p-4 bg-gradient-to-br from-primary to-dark text-white rounded-xl shadow-lg group-hover:shadow-xl transition-shadow"
                     >
                       <div className="text-2xl">
                         {info.icon}
@@ -162,7 +162,7 @@ const Contact = () => {
                   Fill out the form below and we'll get back to you as soon as possible.
                 </p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -179,7 +179,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block mb-2 font-semibold text-gray-700">
                       Email Address <span className="text-red-500">*</span>
@@ -195,7 +195,7 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block mb-2 font-semibold text-gray-700">
                     Phone Number
@@ -209,7 +209,7 @@ const Contact = () => {
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block mb-2 font-semibold text-gray-700">
                     Your Message <span className="text-red-500">*</span>
@@ -224,13 +224,13 @@ const Contact = () => {
                     required
                   />
                 </div>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-gradient-to-r from-primary to-orange-600 text-white rounded-xl font-bold text-lg hover:from-orange-600 hover:to-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                  className="w-full py-4 bg-gradient-to-r from-primary to-dark text-white rounded-xl font-bold text-lg hover:from-dark hover:to-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
                 >
                   {isSubmitting ? (
                     <>

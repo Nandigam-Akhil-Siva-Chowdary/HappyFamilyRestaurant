@@ -14,7 +14,7 @@ const AdminChefs = () => {
 
   useEffect(() => {
     fetchChefs();
-    
+
     // Check if we should auto-open the modal from URL parameter
     if (searchParams.get('add') === 'true') {
       setShowModal(true);
@@ -71,7 +71,7 @@ const AdminChefs = () => {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-orange-600"
+          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-dark"
         >
           <FaPlus />
           Add New Chef
@@ -124,7 +124,7 @@ const AdminChefs = () => {
                   </div>
                 )}
               </div>
-              
+
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -149,9 +149,9 @@ const AdminChefs = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-600 mb-4">{chef.bio}</p>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="px-3 py-1 bg-gray-100 rounded-full">
                     {chef.experience} years experience
@@ -231,7 +231,7 @@ const ChefModal = ({ chef, onClose, onSuccess }) => {
       const url = chef
         ? `https://happyfamilyrestaurant4.onrender.com/api/chefs/${chef._id}`
         : 'https://happyfamilyrestaurant4.onrender.com/api/chefs';
-      
+
       const method = chef ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -391,7 +391,7 @@ const ChefModal = ({ chef, onClose, onSuccess }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-orange-600 disabled:opacity-50"
+              className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-dark disabled:opacity-50"
             >
               {isSubmitting ? 'Saving...' : chef ? 'Update Chef' : 'Add Chef'}
             </button>

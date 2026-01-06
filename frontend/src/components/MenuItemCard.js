@@ -15,6 +15,8 @@ const MenuItemCard = ({ item }) => {
   const buttonRef = useRef(null);
   const dispatch = useDispatch();
 
+  const showSpiceLevel = item?.category && ['starters', 'biryanis', 'main-course'].includes(item.category.toLowerCase());
+
   const handleAddToCart = () => {
     if (!item.available) {
       toast.error(`${item.name} is out of stock!`);
@@ -30,31 +32,31 @@ const MenuItemCard = ({ item }) => {
       specialInstructions,
       spiceLevel
     };
-    
+
     // Trigger cart animation
     setAnimateCart(true);
     setTimeout(() => setAnimateCart(false), 100);
-    
+
     // Dispatch to cart
     dispatch(addToCart(cartItem));
-    
+
     // Show success toast with animation
     toast.success(`${item.name} added to cart! 🎉`, {
       icon: '🛒',
       duration: 2000,
     });
-    
+
     setShowModal(false);
     setSpecialInstructions('');
     setSpiceLevel('medium');
     setQuantity(1);
-    
+
     // Trigger global cart animation event
-    window.dispatchEvent(new CustomEvent('cartAnimation', { 
-      detail: { 
+    window.dispatchEvent(new CustomEvent('cartAnimation', {
+      detail: {
         image: getImageUrl(item.image),
-        name: item.name 
-      } 
+        name: item.name
+      }
     }));
   };
 
@@ -77,9 +79,8 @@ const MenuItemCard = ({ item }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl ${
-          !item.available ? 'opacity-60' : ''
-        }`}
+        className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl ${!item.available ? 'opacity-60' : ''
+          }`}
       >
         <div className="relative">
           <img
@@ -92,7 +93,7 @@ const MenuItemCard = ({ item }) => {
               <span className="text-white text-xl font-bold">Out of Stock</span>
             </div>
           )}
-          <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full">
+          <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full text-xl font-bold shadow-md">
             ₹{item.price}
           </div>
           {item.spicyLevel === 'extra-spicy' && (
@@ -101,15 +102,15 @@ const MenuItemCard = ({ item }) => {
             </div>
           )}
         </div>
-        
+
         <div className="p-6">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-bold text-gray-800">{item.name}</h3>
             <div className="flex">{renderStars()}</div>
           </div>
-          
+
           <p className="text-gray-600 mb-4">{item.description}</p>
-          
+
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <span className="px-2 py-1 bg-gray-100 rounded text-sm">
@@ -119,25 +120,24 @@ const MenuItemCard = ({ item }) => {
                 {item.preparationTime} mins
               </span>
             </div>
-            
+
             <motion.button
               ref={buttonRef}
               onClick={handleAddToCart}
               disabled={!item.available}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={animateCart ? { 
+              animate={animateCart ? {
                 scale: [1, 1.2, 1],
                 rotate: [0, 10, -10, 0]
               } : {}}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all ${
-                item.available
-                  ? 'bg-primary text-white hover:bg-orange-600 shadow-lg hover:shadow-xl'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all ${item.available
+                ? 'bg-primary text-white hover:bg-dark shadow-lg hover:shadow-xl'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
             >
               <motion.div
-                animate={animateCart ? { 
+                animate={animateCart ? {
                   rotate: [0, 360],
                   scale: [1, 1.3, 1]
                 } : {}}
@@ -160,27 +160,27 @@ const MenuItemCard = ({ item }) => {
             className="bg-white rounded-2xl p-6 max-w-md w-full"
           >
             <h3 className="text-2xl font-bold mb-4">Customize {item.name}</h3>
-            
+
             <div className="space-y-4">
-              <div>
-                <label className="block mb-2 font-medium">Spice Level</label>
-                <div className="flex space-x-2">
-                  {['mild', 'medium', 'spicy', 'extra-spicy'].map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setSpiceLevel(level)}
-                      className={`px-4 py-2 rounded-lg capitalize ${
-                        spiceLevel === level
+              {showSpiceLevel && (
+                <div>
+                  <label className="block mb-2 font-medium">Spice Level</label>
+                  <div className="flex space-x-2">
+                    {['mild', 'medium', 'spicy', 'extra-spicy'].map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setSpiceLevel(level)}
+                        className={`px-4 py-2 rounded-lg capitalize ${spiceLevel === level
                           ? 'bg-primary text-white'
                           : 'bg-gray-100'
-                      }`}
-                    >
-                      {level}
-                    </button>
-                  ))}
+                          }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              
+              )}
               <div>
                 <label className="block mb-2 font-medium">Quantity</label>
                 <div className="flex items-center space-x-4">
@@ -199,7 +199,7 @@ const MenuItemCard = ({ item }) => {
                   </button>
                 </div>
               </div>
-              
+
               <div>
                 <label className="block mb-2 font-medium">
                   Special Instructions
@@ -212,7 +212,7 @@ const MenuItemCard = ({ item }) => {
                   placeholder="E.g., No onions, extra sauce..."
                 />
               </div>
-              
+
               <div className="flex justify-end space-x-4 mt-6">
                 <button
                   onClick={() => setShowModal(false)}

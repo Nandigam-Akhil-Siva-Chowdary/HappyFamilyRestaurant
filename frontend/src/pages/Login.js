@@ -30,7 +30,7 @@ const Login = () => {
         // Save token and user data
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        
+
         toast.success('Login successful!');
         navigate('/admin');
       } else {
@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#EFEBE9] to-[#D7CCC8] p-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -58,13 +58,13 @@ const Login = () => {
           >
             <FaUtensils className="text-6xl text-primary" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Sree Family Restaurent</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Happy Family Restaurent</h1>
           <p className="text-gray-600">Admin Dashboard Login</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-gray-700 mb-2">Email Address</label>
@@ -116,7 +116,7 @@ const Login = () => {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-primary text-white rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-primary text-white rounded-lg font-semibold text-lg hover:bg-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">

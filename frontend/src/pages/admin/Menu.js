@@ -14,7 +14,7 @@ const AdminMenu = () => {
 
   useEffect(() => {
     fetchMenuItems();
-    
+
     // Check if we should auto-open the modal from URL parameter
     if (searchParams.get('add') === 'true') {
       setShowModal(true);
@@ -87,7 +87,7 @@ const AdminMenu = () => {
     { value: 'starters', label: 'Starters' },
     { value: 'biryanis', label: 'Biryanis' },
     { value: 'main-course', label: 'Main Course' },
-    { value: 'desserts', label: 'Desserts' },
+    // { value: 'desserts', label: 'Desserts' },
     { value: 'soft-drinks', label: 'Soft Drinks' },
     { value: 'specials', label: 'Specials' }
   ];
@@ -110,7 +110,7 @@ const AdminMenu = () => {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-orange-600"
+          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-dark"
         >
           <FaPlus />
           Add New Item
@@ -193,11 +193,10 @@ const AdminMenu = () => {
                     <td className="p-4">
                       <button
                         onClick={() => toggleAvailability(item._id, item.available)}
-                        className={`flex items-center gap-2 px-3 py-1 rounded-full ${
-                          item.available
+                        className={`flex items-center gap-2 px-3 py-1 rounded-full ${item.available
                             ? 'bg-green-100 text-green-800'
                             : 'bg-red-100 text-red-800'
-                        }`}
+                          }`}
                       >
                         {item.available ? <FaToggleOn /> : <FaToggleOff />}
                         {item.available ? 'Available' : 'Out of Stock'}
@@ -294,7 +293,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
       const url = item
         ? `https://happyfamilyrestaurant4.onrender.com/api/menu/${item._id}`
         : 'https://happyfamilyrestaurant4.onrender.com/api/menu';
-      
+
       const method = item ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -323,7 +322,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
     { value: 'starters', label: 'Starters' },
     { value: 'biryanis', label: 'Biryanis' },
     { value: 'main-course', label: 'Main Course' },
-    { value: 'desserts', label: 'Desserts' },
+    // { value: 'desserts', label: 'Desserts' },
     { value: 'soft-drinks', label: 'Soft Drinks' },
     { value: 'specials', label: 'Specials' }
   ];
@@ -474,7 +473,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-orange-600 disabled:opacity-50"
+              className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-dark disabled:opacity-50"
             >
               {isSubmitting ? 'Saving...' : item ? 'Update Item' : 'Add Item'}
             </button>

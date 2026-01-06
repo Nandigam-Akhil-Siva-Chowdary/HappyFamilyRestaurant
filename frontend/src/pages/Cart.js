@@ -84,7 +84,7 @@ const Cart = () => {
           <p className="text-gray-600 mb-8">Add some delicious items from our menu!</p>
           <button
             onClick={() => navigate('/menu')}
-            className="px-8 py-3 bg-primary text-white rounded-full font-semibold text-lg hover:bg-orange-600 transition-colors"
+            className="px-8 py-3 bg-primary text-white rounded-full font-semibold text-lg hover:bg-dark transition-colors"
           >
             Browse Menu
           </button>
@@ -101,20 +101,20 @@ const Cart = () => {
         className="max-w-6xl mx-auto"
       >
         <h1 className="text-4xl font-bold mb-8 text-center">Your Order</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h2 className="text-2xl font-bold mb-6">Order Items ({cart.length})</h2>
-              
+
               <div className="space-y-4">
                 {cart.map((item) => (
                   <motion.div
                     key={item._id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-xl"
+                    className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-gray-50 rounded-xl"
                   >
                     <div className="flex items-center space-x-4">
                       <img
@@ -137,8 +137,8 @@ const Cart = () => {
                         )}
                       </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-6">
+
+                    <div className="flex items-center justify-between w-full md:w-auto md:justify-start md:space-x-6 mt-4 md:mt-0">
                       <div className="flex items-center space-x-3">
                         <motion.button
                           whileHover={{ scale: 1.1 }}
@@ -151,7 +151,7 @@ const Cart = () => {
                         >
                           <FaMinus />
                         </motion.button>
-                        <motion.span 
+                        <motion.span
                           key={item.quantity}
                           initial={{ scale: 1.5 }}
                           animate={{ scale: 1 }}
@@ -171,12 +171,12 @@ const Cart = () => {
                           <FaPlus />
                         </motion.button>
                       </div>
-                      
+
                       <div className="text-right">
                         <p className="font-bold text-lg">₹{item.price * item.quantity}</p>
                         <p className="text-sm text-gray-500">₹{item.price} each</p>
                       </div>
-                      
+
                       <motion.button
                         whileHover={{ scale: 1.1, rotate: 10 }}
                         whileTap={{ scale: 0.9 }}
@@ -189,7 +189,7 @@ const Cart = () => {
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="flex justify-between items-center mt-8 pt-6 border-t">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -206,12 +206,12 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Customer Details */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
               <h2 className="text-2xl font-bold mb-6">Customer Details</h2>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block mb-2 font-medium">Your Name *</label>
@@ -227,7 +227,7 @@ const Cart = () => {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block mb-2 font-medium">Table Number *</label>
                   <input
@@ -243,7 +243,7 @@ const Cart = () => {
                     required
                   />
                 </div>
-                
+
                 <div>
                   <label className="block mb-2 font-medium">
                     Additional Instructions (Optional)
@@ -259,7 +259,7 @@ const Cart = () => {
                     placeholder="Any special requests..."
                   />
                 </div>
-                
+
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="flex justify-between mb-2">
                     <span>Subtotal</span>
@@ -267,19 +267,19 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between font-bold text-lg pt-2 border-t">
                     <span>Total Payable</span>
-                    <span>₹{totalAmount }</span>
+                    <span>₹{totalAmount}</span>
                   </div>
                 </div>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handlePlaceOrder}
-                  className="w-full py-4 bg-primary text-white rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors"
+                  className="w-full py-4 bg-primary text-white rounded-lg font-bold text-lg hover:bg-dark transition-colors"
                 >
                   Place Order - ₹{totalAmount}
                 </motion.button>
-                
+
                 <p className="text-center text-sm text-gray-500 mt-4">
                   Your order will be prepared immediately and served at your table
                 </p>

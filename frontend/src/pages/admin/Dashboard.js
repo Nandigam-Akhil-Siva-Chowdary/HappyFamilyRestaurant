@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  FaShoppingCart, FaUtensils, FaUsers, FaChartLine, 
+import {
+  FaShoppingCart, FaUtensils, FaUsers, FaChartLine,
   FaMoneyBill, FaClock, FaStar, FaExclamationTriangle, FaBell,
   FaArrowUp, FaArrowDown
 } from 'react-icons/fa';
@@ -27,31 +27,31 @@ const AdminDashboard = () => {
   const fetchDashboardStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      
+
       // Fetch orders stats
       const ordersResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/orders/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const ordersStats = ordersResponse.ok ? await ordersResponse.json() : {};
-      
+
       // Fetch menu stats
       const menuResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu/stats/count', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const menuStats = menuResponse.ok ? await menuResponse.json() : {};
-      
+
       // Fetch chefs count
       const chefsResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/chefs', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const chefs = chefsResponse.ok ? await chefsResponse.json() : [];
-      
+
       // Fetch contact messages stats
       const contactResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/contact/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const contactStats = contactResponse.ok ? await contactResponse.json() : {};
-      
+
       setStats({
         totalOrders: ordersStats.totalOrders || 0,
         pendingOrders: ordersStats.pendingOrders || 0,
@@ -88,12 +88,12 @@ const AdminDashboard = () => {
     // Fetch dashboard stats
     fetchDashboardStats();
     fetchRecentOrders();
-    
+
     // Request notification permission on mount
     if (Notification.permission === 'default') {
       Notification.requestPermission();
     }
-    
+
     // Socket event listeners for real-time order notifications
     socket.on('new-order', (order) => {
       // Show toast notification
@@ -123,13 +123,13 @@ const AdminDashboard = () => {
       ), {
         duration: 6000,
       });
-      
+
       // Play beep sound
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
         audioRef.current.play().catch(e => console.log('Audio play failed:', e));
       }
-      
+
       // Browser notification (if permission granted)
       if (Notification.permission === 'granted') {
         new Notification('New Order Received! 🎉', {
@@ -141,12 +141,12 @@ const AdminDashboard = () => {
           vibrate: [200, 100, 200],
         });
       }
-      
+
       // Refresh stats
       fetchDashboardStats();
       fetchRecentOrders();
     });
-    
+
     return () => {
       socket.off('new-order');
     };
@@ -168,8 +168,8 @@ const AdminDashboard = () => {
       title: 'Pending Orders',
       value: stats.pendingOrders,
       icon: <FaClock />,
-      gradient: 'from-yellow-500 to-orange-500',
-      bgGradient: 'from-yellow-50 to-orange-50',
+      gradient: 'from-[#8D6E63] to-[#6F4E37]',
+      bgGradient: 'from-[#EFEBE9] to-[#D7CCC8]',
       iconBg: 'bg-yellow-500',
       link: '/admin/orders',
       trend: null
@@ -241,7 +241,7 @@ const AdminDashboard = () => {
     <div className="p-6">
       {/* Hidden audio element for beep sound */}
       <audio ref={audioRef} src="/beep.mp3" preload="auto" />
-      
+
       {/* Browser Notification Permission Request */}
       {Notification.permission === 'default' && (
         <motion.div
@@ -261,7 +261,7 @@ const AdminDashboard = () => {
           </p>
         </motion.div>
       )}
-      
+
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Today's Dashboard</h1>
         <p className="text-gray-600">Welcome back! Here's what's happening today - {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
@@ -281,7 +281,7 @@ const AdminDashboard = () => {
               <div className={`relative overflow-hidden bg-gradient-to-br ${stat.bgGradient} rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/20`}>
                 {/* Decorative gradient overlay */}
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${stat.gradient} opacity-10 rounded-full -mr-16 -mt-16`}></div>
-                
+
                 <div className="relative p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
@@ -300,7 +300,7 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Bottom accent line */}
                   <div className={`h-1 bg-gradient-to-r ${stat.gradient} rounded-full mt-4`}></div>
                 </div>
@@ -313,11 +313,11 @@ const AdminDashboard = () => {
       {/* Recent Orders - Full Width */}
       <div className="mb-8">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-          <div className="bg-gradient-to-r from-primary to-orange-600 px-6 py-4">
+          <div className="bg-gradient-to-r from-primary to-dark px-6 py-4">
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-bold text-white">Recent Orders Today</h3>
-              <Link 
-                to="/admin/orders" 
+              <Link
+                to="/admin/orders"
                 className="text-white hover:text-gray-100 font-semibold flex items-center gap-2 transition-colors"
               >
                 View All
@@ -325,7 +325,7 @@ const AdminDashboard = () => {
               </Link>
             </div>
           </div>
-          
+
           <div className="p-6">
             {recentOrders.length > 0 ? (
               <div className="space-y-3">
@@ -338,35 +338,33 @@ const AdminDashboard = () => {
                     className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl hover:shadow-md transition-all border border-gray-100 hover:border-primary/20"
                   >
                     <div className="flex items-center gap-4 flex-1">
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                        order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
-                        order.status === 'preparing' ? 'bg-blue-100 text-blue-700' :
-                        order.status === 'ready' ? 'bg-green-100 text-green-700' :
-                        order.status === 'served' ? 'bg-emerald-100 text-emerald-700' :
-                        'bg-gray-100 text-gray-700'
-                      }`}>
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                          order.status === 'preparing' ? 'bg-blue-100 text-blue-700' :
+                            order.status === 'ready' ? 'bg-green-100 text-green-700' :
+                              order.status === 'served' ? 'bg-emerald-100 text-emerald-700' :
+                                'bg-gray-100 text-gray-700'
+                        }`}>
                         <FaShoppingCart />
                       </div>
                       <div>
                         <p className="font-bold text-gray-800">{order.orderId}</p>
                         <p className="text-sm text-gray-600">{order.customerName} • Table {order.tableNumber}</p>
                         <p className="text-xs text-gray-500 mt-1">
-                          {new Date(order.createdAt).toLocaleTimeString('en-US', { 
-                            hour: '2-digit', 
-                            minute: '2-digit' 
+                          {new Date(order.createdAt).toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit'
                           })}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-lg text-gray-800">₹{(order.totalAmount || 0).toLocaleString('en-IN')}</p>
-                      <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                        order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                        order.status === 'preparing' ? 'bg-blue-100 text-blue-800' :
-                        order.status === 'ready' ? 'bg-green-100 text-green-800' :
-                        order.status === 'served' ? 'bg-emerald-100 text-emerald-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
+                      <span className={`px-3 py-1 text-xs font-semibold rounded-full ${order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                          order.status === 'preparing' ? 'bg-blue-100 text-blue-800' :
+                            order.status === 'ready' ? 'bg-green-100 text-green-800' :
+                              order.status === 'served' ? 'bg-emerald-100 text-emerald-800' :
+                                'bg-gray-100 text-gray-800'
+                        }`}>
                         {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                       </span>
                     </div>
@@ -392,7 +390,7 @@ const AdminDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             to="/admin/menu?add=true"
-            className="bg-primary text-white p-4 rounded-lg text-center hover:bg-orange-600 transition-colors"
+            className="bg-primary text-white p-4 rounded-lg text-center hover:bg-dark transition-colors"
           >
             Add New Menu Item
           </Link>
