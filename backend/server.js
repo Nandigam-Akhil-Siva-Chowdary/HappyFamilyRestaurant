@@ -9,7 +9,7 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const server = http.createzServer(app);
+const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     origin: "*",
