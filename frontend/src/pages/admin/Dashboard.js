@@ -29,25 +29,25 @@ const AdminDashboard = () => {
       const token = localStorage.getItem('token');
 
       // Fetch orders stats
-      const ordersResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/orders/stats', {
+      const ordersResponse = await fetch('https://happyfamilyrestaurant.onrender.com/api/orders/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const ordersStats = ordersResponse.ok ? await ordersResponse.json() : {};
 
       // Fetch menu stats
-      const menuResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu/stats/count', {
+      const menuResponse = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu/stats/count', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const menuStats = menuResponse.ok ? await menuResponse.json() : {};
 
       // Fetch chefs count
-      const chefsResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/chefs', {
+      const chefsResponse = await fetch('https://happyfamilyrestaurant.onrender.com/api/chefs', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const chefs = chefsResponse.ok ? await chefsResponse.json() : [];
 
       // Fetch contact messages stats
-      const contactResponse = await fetch('https://happyfamilyrestaurant4.onrender.com/api/contact/stats', {
+      const contactResponse = await fetch('https://happyfamilyrestaurant.onrender.com/api/contact/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const contactStats = contactResponse.ok ? await contactResponse.json() : {};
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
   const fetchRecentOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/orders?today=true', {
+      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/orders?today=true', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {

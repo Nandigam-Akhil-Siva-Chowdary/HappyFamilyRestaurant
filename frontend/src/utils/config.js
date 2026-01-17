@@ -1,5 +1,5 @@
 // API Configuration
-export const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://happyfamilyrestaurant4.onrender.com';
+export const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://happyfamilyrestaurant.onrender.com';
 
 // Helper function to get full image URL
 export const getImageUrl = (imagePath) => {

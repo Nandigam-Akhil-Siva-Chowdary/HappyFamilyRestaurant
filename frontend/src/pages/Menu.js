@@ -31,7 +31,7 @@ const Menu = () => {
   const fetchMenuItems = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu');
+      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu');
       const data = await response.json();
       setMenuItems(data);
       setFilteredItems(data);
@@ -44,7 +44,7 @@ const Menu = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu/categories/all');
+      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu/categories/all');
       const data = await response.json();
       setCategories(data);
     } catch (error) {

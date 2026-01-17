@@ -27,7 +27,7 @@ const AdminChefs = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/chefs', {
+      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/chefs', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -46,7 +46,7 @@ const AdminChefs = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/chefs/${chefId}`, {
+      const response = await fetch(`https://happyfamilyrestaurant.onrender.com/api/chefs/${chefId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -229,8 +229,8 @@ const ChefModal = ({ chef, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const url = chef
-        ? `https://happyfamilyrestaurant4.onrender.com/api/chefs/${chef._id}`
-        : 'https://happyfamilyrestaurant4.onrender.com/api/chefs';
+        ? `https://happyfamilyrestaurant.onrender.com/api/chefs/${chef._id}`
+        : 'https://happyfamilyrestaurant.onrender.com/api/chefs';
 
       const method = chef ? 'PUT' : 'POST';
 

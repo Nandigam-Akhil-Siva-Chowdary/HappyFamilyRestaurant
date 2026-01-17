@@ -27,7 +27,7 @@ const AdminMenu = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://happyfamilyrestaurant4.onrender.com/api/menu', {
+      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ const AdminMenu = () => {
   const toggleAvailability = async (itemId, currentStatus) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/menu/${itemId}/availability`, {
+      const response = await fetch(`https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}/availability`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const AdminMenu = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://happyfamilyrestaurant4.onrender.com/api/menu/${itemId}`, {
+      const response = await fetch(`https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -87,7 +87,7 @@ const AdminMenu = () => {
     { value: 'starters', label: 'Starters' },
     { value: 'biryanis', label: 'Biryanis' },
     { value: 'main-course', label: 'Main Course' },
-    // { value: 'desserts', label: 'Desserts' },
+
     { value: 'soft-drinks', label: 'Soft Drinks' },
     { value: 'specials', label: 'Specials' }
   ];
@@ -194,8 +194,8 @@ const AdminMenu = () => {
                       <button
                         onClick={() => toggleAvailability(item._id, item.available)}
                         className={`flex items-center gap-2 px-3 py-1 rounded-full ${item.available
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-red-100 text-red-800'
                           }`}
                       >
                         {item.available ? <FaToggleOn /> : <FaToggleOff />}
@@ -291,8 +291,8 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const url = item
-        ? `https://happyfamilyrestaurant4.onrender.com/api/menu/${item._id}`
-        : 'https://happyfamilyrestaurant4.onrender.com/api/menu';
+        ? `https://happyfamilyrestaurant.onrender.com/api/menu/${item._id}`
+        : 'https://happyfamilyrestaurant.onrender.com/api/menu';
 
       const method = item ? 'PUT' : 'POST';
 
@@ -322,7 +322,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
     { value: 'starters', label: 'Starters' },
     { value: 'biryanis', label: 'Biryanis' },
     { value: 'main-course', label: 'Main Course' },
-    // { value: 'desserts', label: 'Desserts' },
+
     { value: 'soft-drinks', label: 'Soft Drinks' },
     { value: 'specials', label: 'Specials' }
   ];

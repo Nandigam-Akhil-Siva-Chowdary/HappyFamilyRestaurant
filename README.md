@@ -88,7 +88,7 @@ Create Admin User
 
 bash
 # Using Postman or curl:
-POST https://happyfamilyrestaurant4.onrender.com/api/auth/register
+POST https://happyfamilyrestaurant.onrender.com/api/auth/register
 {
   "name": "Admin",
   "email": "admin@restaurant.com",
@@ -121,7 +121,7 @@ GET	/api/orders	Get all orders (Admin)
 POST	/api/contact	Submit contact form
 🌐 Live Demo
 Frontend: https://happy-family-restaurant.vercel.app/
-Backend API: https://happyfamilyrestaurant4.onrender.com
+Backend API: https://happyfamilyrestaurant.onrender.com
 Admin Login: admin@restaurant.com / yourpassword
 
 📸 Screenshots
