@@ -120,7 +120,7 @@ POST	/api/orders	Place order
 GET	/api/orders	Get all orders (Admin)
 POST	/api/contact	Submit contact form
 🌐 Live Demo
-Frontend: https://happy-family-restaurant.vercel.app/
+Frontend: https://happyfamilyrestaurant1.onrender.com
 Backend API: https://happyfamilyrestaurant.onrender.com
 Admin Login: admin@restaurant.com / yourpassword
 
