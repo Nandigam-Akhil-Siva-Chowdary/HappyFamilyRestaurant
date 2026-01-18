@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 // Socket.io connection
 io.on('connection', (socket) => {
   console.log('New client connected');
-  
+
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });
@@ -42,8 +42,8 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -63,6 +63,15 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/chefs', chefRoutes);
 app.use('/api/contact', contactRoutes);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
