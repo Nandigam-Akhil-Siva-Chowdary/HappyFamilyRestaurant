@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { API_BASE_URL } from '../utils/config';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaLock, FaEnvelope, FaUtensils, FaEye, FaEyeSlash } from 'react-icons/fa';
 import toast from 'react-hot-toast';
@@ -16,7 +17,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ const Login = () => {
               First time setup? Register admin account using Postman API:
             </p>
             <code className="block mt-2 p-3 bg-gray-100 rounded text-xs overflow-x-auto">
-              POST https://happyfamilyrestaurant.onrender.com/api/auth/register
+              POST ${API_BASE_URL}/api/auth/register
               <br />
               {JSON.stringify({
                 name: "Admin Name",

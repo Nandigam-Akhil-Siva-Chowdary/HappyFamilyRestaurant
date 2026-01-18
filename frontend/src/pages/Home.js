@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_BASE_URL } from '../utils/config';
 import { Link } from 'react-router-dom';
 import { FaClock, FaLeaf, FaStar, FaUtensils, FaArrowRight, FaHamburger, FaIceCream, FaGlassMartini, FaFire } from "react-icons/fa";
 
@@ -14,7 +15,7 @@ const Home = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu/categories/all');
+      const response = await fetch(`${API_BASE_URL}/api/menu/categories/all`);
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -24,7 +25,7 @@ const Home = () => {
 
   const fetchCategoryCounts = async () => {
     try {
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu');
+      const response = await fetch(`${API_BASE_URL}/api/menu`);
       const data = await response.json();
       const counts = {};
       data.forEach(item => {

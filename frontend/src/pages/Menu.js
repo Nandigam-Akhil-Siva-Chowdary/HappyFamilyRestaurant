@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_BASE_URL } from '../utils/config';
 import { useSearchParams } from 'react-router-dom';
 import MenuItemCard from '../components/MenuItemCard';
 import { FaFilter, FaSearch } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const Menu = () => {
   const fetchMenuItems = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu');
+      const response = await fetch(`${API_BASE_URL}/api/menu`);
       const data = await response.json();
       setMenuItems(data);
       setFilteredItems(data);
@@ -44,7 +45,7 @@ const Menu = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu/categories/all');
+      const response = await fetch(`${API_BASE_URL}/api/menu/categories/all`);
       const data = await response.json();
       setCategories(data);
     } catch (error) {

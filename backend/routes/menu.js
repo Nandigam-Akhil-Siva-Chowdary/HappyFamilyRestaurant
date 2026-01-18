@@ -82,6 +82,11 @@ router.post("/", auth, isAdmin, upload.single("image"), async (req, res) => {
     const { name, description, price, category, spicyLevel, preparationTime } =
       req.body;
 
+    console.log(
+      "Creating menu item with image:",
+      req.file ? req.file.secure_url : "No file uploaded",
+    );
+
     const menuItem = new MenuItem({
       name,
       description,
@@ -105,6 +110,7 @@ router.put("/:id", auth, isAdmin, upload.single("image"), async (req, res) => {
     const updates = { ...req.body };
 
     if (req.file) {
+      console.log("Updating menu item with new image:", req.file.secure_url);
       updates.image = req.file.secure_url;
     }
 
