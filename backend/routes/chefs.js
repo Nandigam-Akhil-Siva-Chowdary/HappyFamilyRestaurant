@@ -72,7 +72,7 @@ router.post("/", auth, isAdmin, upload.single("image"), async (req, res) => {
 
     console.log(
       "Creating chef with image:",
-      req.file ? req.file.secure_url : "No file uploaded",
+      req.file ? req.file.path : "No file uploaded",
     );
 
     const chef = new Chef({
@@ -80,7 +80,7 @@ router.post("/", auth, isAdmin, upload.single("image"), async (req, res) => {
       specialty,
       experience: parseInt(experience),
       bio,
-      image: req.file ? req.file.secure_url : "",
+      image: req.file ? req.file.path : "",
     });
 
     await chef.save();
@@ -96,8 +96,8 @@ router.put("/:id", auth, isAdmin, upload.single("image"), async (req, res) => {
     const updates = { ...req.body };
 
     if (req.file) {
-      console.log("Updating chef with new image:", req.file.secure_url);
-      updates.image = req.file.secure_url;
+      console.log("Updating chef with new image:", req.file.path);
+      updates.image = req.file.path;
     }
 
     if (updates.experience) {
