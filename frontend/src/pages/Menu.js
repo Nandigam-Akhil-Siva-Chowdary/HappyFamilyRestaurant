@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { API_BASE_URL } from '../utils/config';
-import { useSearchParams } from 'react-router-dom';
-import MenuItemCard from '../components/MenuItemCard';
-import { FaFilter, FaSearch } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { API_BASE_URL } from "../utils/config";
+import { useSearchParams } from "react-router-dom";
+import MenuItemCard from "../components/MenuItemCard";
+import { FaFilter, FaSearch } from "react-icons/fa";
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get("category") || "all",
+  );
+  const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const Menu = () => {
     fetchCategories();
 
     // Check for category in URL params
-    const categoryParam = searchParams.get('category');
+    const categoryParam = searchParams.get("category");
     if (categoryParam) {
       setSelectedCategory(categoryParam);
     }
@@ -37,7 +39,7 @@ const Menu = () => {
       setMenuItems(data);
       setFilteredItems(data);
     } catch (error) {
-      console.error('Error fetching menu items:', error);
+      console.error("Error fetching menu items:", error);
     } finally {
       setIsLoading(false);
     }
@@ -49,21 +51,22 @@ const Menu = () => {
       const data = await response.json();
       setCategories(data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
   const filterItems = () => {
     let filtered = menuItems;
 
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(item => item.category === selectedCategory);
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter((item) => item.category === selectedCategory);
     }
 
     if (searchTerm) {
-      filtered = filtered.filter(item =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchTerm.toLowerCase())
+      filtered = filtered.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -71,11 +74,13 @@ const Menu = () => {
   };
 
   const categoryNames = {
-    'starters': 'Starters',
-    'biryanis': 'Biryanis',
-    'main-course': 'Main Course',
-    'soft-drinks': 'Soft Drinks',
-    'specials': 'Specials'
+    "starters-non-veg": "Starters-Non VEG",
+    "starters-veg": "Starters - VEG",
+    roties: "Roties",
+    biryanis: "Biryanis",
+    "main-course": "Main Course",
+    "soft-drinks": "Soft Drinks",
+    specials: "Specials",
   };
 
   return (
@@ -88,7 +93,9 @@ const Menu = () => {
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold mb-4">Our Menu</h1>
-          <p className="text-gray-600 text-lg">Delicious dishes crafted with love</p>
+          <p className="text-gray-600 text-lg">
+            Delicious dishes crafted with love
+          </p>
         </motion.div>
 
         {/* Filters and Search */}
@@ -115,14 +122,14 @@ const Menu = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    setSelectedCategory('all');
+                    setSelectedCategory("all");
                     setSearchParams({});
                   }}
-                  className={`px-4 py-2 rounded-full transition-all ${selectedCategory === 'all' ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 hover:bg-gray-200'}`}
+                  className={`px-4 py-2 rounded-full transition-all ${selectedCategory === "all" ? "bg-primary text-white shadow-lg" : "bg-gray-100 hover:bg-gray-200"}`}
                 >
                   All
                 </motion.button>
-                {categories.map(category => (
+                {categories.map((category) => (
                   <motion.button
                     key={category}
                     whileHover={{ scale: 1.05 }}
@@ -131,7 +138,7 @@ const Menu = () => {
                       setSelectedCategory(category);
                       setSearchParams({ category });
                     }}
-                    className={`px-4 py-2 rounded-full capitalize transition-all ${selectedCategory === category ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 hover:bg-gray-200'}`}
+                    className={`px-4 py-2 rounded-full capitalize transition-all ${selectedCategory === category ? "bg-primary text-white shadow-lg" : "bg-gray-100 hover:bg-gray-200"}`}
                   >
                     {categoryNames[category] || category}
                   </motion.button>
@@ -159,7 +166,9 @@ const Menu = () => {
             {filteredItems.length === 0 ? (
               <div className="text-center py-12">
                 <h3 className="text-2xl font-bold mb-4">No items found</h3>
-                <p className="text-gray-600">Try a different search or category</p>
+                <p className="text-gray-600">
+                  Try a different search or category
+                </p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -179,10 +188,12 @@ const Menu = () => {
         )}
 
         {/* Category Sections */}
-        {!isLoading && selectedCategory === 'all' && (
+        {!isLoading && selectedCategory === "all" && (
           <div className="mt-16">
-            {categories.map(category => {
-              const categoryItems = menuItems.filter(item => item.category === category);
+            {categories.map((category) => {
+              const categoryItems = menuItems.filter(
+                (item) => item.category === category,
+              );
               if (categoryItems.length === 0) return null;
 
               return (

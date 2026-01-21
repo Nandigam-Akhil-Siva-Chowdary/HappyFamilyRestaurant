@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaPlus, FaEdit, FaTrash, FaToggleOn, FaToggleOff } from 'react-icons/fa';
-import toast from 'react-hot-toast';
-import { useSearchParams } from 'react-router-dom';
-import { getImageUrl } from '../../utils/config';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  FaPlus,
+  FaEdit,
+  FaTrash,
+  FaToggleOn,
+  FaToggleOff,
+} from "react-icons/fa";
+import toast from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
+import { getImageUrl } from "../../utils/config";
 
 const AdminMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -16,7 +22,7 @@ const AdminMenu = () => {
     fetchMenuItems();
 
     // Check if we should auto-open the modal from URL parameter
-    if (searchParams.get('add') === 'true') {
+    if (searchParams.get("add") === "true") {
       setShowModal(true);
       // Remove the parameter from URL
       setSearchParams({});
@@ -26,16 +32,19 @@ const AdminMenu = () => {
   const fetchMenuItems = async () => {
     setIsLoading(true);
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('https://happyfamilyrestaurant.onrender.com/api/menu', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://happyfamilyrestaurant.onrender.com/api/menu",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       const data = await response.json();
       setMenuItems(data);
     } catch (error) {
-      toast.error('Failed to fetch menu items');
+      toast.error("Failed to fetch menu items");
     } finally {
       setIsLoading(false);
     }
@@ -43,57 +52,66 @@ const AdminMenu = () => {
 
   const toggleAvailability = async (itemId, currentStatus) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}/availability`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}/availability`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ available: !currentStatus }),
         },
-        body: JSON.stringify({ available: !currentStatus })
-      });
+      );
 
       if (response.ok) {
-        toast.success(`Item ${!currentStatus ? 'made available' : 'marked as out of stock'}`);
+        toast.success(
+          `Item ${!currentStatus ? "made available" : "marked as out of stock"}`,
+        );
         fetchMenuItems();
       }
     } catch (error) {
-      toast.error('Failed to update availability');
+      toast.error("Failed to update availability");
     }
   };
 
   const deleteMenuItem = async (itemId) => {
-    if (!window.confirm('Are you sure you want to delete this item?')) return;
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `https://happyfamilyrestaurant.onrender.com/api/menu/${itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
 
       if (response.ok) {
-        toast.success('Menu item deleted successfully');
+        toast.success("Menu item deleted successfully");
         fetchMenuItems();
       }
     } catch (error) {
-      toast.error('Failed to delete menu item');
+      toast.error("Failed to delete menu item");
     }
   };
 
   const categories = [
-    { value: 'starters', label: 'Starters' },
-    { value: 'biryanis', label: 'Biryanis' },
-    { value: 'main-course', label: 'Main Course' },
-
-    { value: 'soft-drinks', label: 'Soft Drinks' },
-    { value: 'specials', label: 'Specials' }
+    { value: "starters-non-veg", label: "Starters-Non VEG" },
+    { value: "starters-veg", label: "Starters - VEG" },
+    { value: "roties", label: "Roties" },
+    { value: "biryanis", label: "Biryanis" },
+    { value: "main-course", label: "Main Course" },
+    { value: "soft-drinks", label: "Soft Drinks" },
+    { value: "specials", label: "Specials" },
   ];
 
   const categoryStats = {};
-  menuItems.forEach(item => {
+  menuItems.forEach((item) => {
     if (!categoryStats[item.category]) {
       categoryStats[item.category] = { total: 0, available: 0 };
     }
@@ -119,10 +137,16 @@ const AdminMenu = () => {
 
       {/* Category Stats */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-        {categories.map(category => {
-          const stats = categoryStats[category.value] || { total: 0, available: 0 };
+        {categories.map((category) => {
+          const stats = categoryStats[category.value] || {
+            total: 0,
+            available: 0,
+          };
           return (
-            <div key={category.value} className="bg-white p-4 rounded-lg shadow">
+            <div
+              key={category.value}
+              className="bg-white p-4 rounded-lg shadow"
+            >
               <h3 className="font-bold mb-2">{category.label}</h3>
               <div className="flex justify-between">
                 <span className="text-gray-600">Total: {stats.total}</span>
@@ -173,7 +197,9 @@ const AdminMenu = () => {
                   >
                     <td className="p-4">
                       <img
-                        src={getImageUrl(item.image) || '/api/placeholder/100/100'}
+                        src={
+                          getImageUrl(item.image) || "/api/placeholder/100/100"
+                        }
                         alt={item.name}
                         className="w-16 h-16 object-cover rounded"
                       />
@@ -181,25 +207,30 @@ const AdminMenu = () => {
                     <td className="p-4">
                       <div>
                         <p className="font-bold">{item.name}</p>
-                        <p className="text-sm text-gray-600 truncate max-w-xs">{item.description}</p>
+                        <p className="text-sm text-gray-600 truncate max-w-xs">
+                          {item.description}
+                        </p>
                       </div>
                     </td>
                     <td className="p-4">
                       <span className="px-3 py-1 bg-gray-100 rounded-full text-sm capitalize">
-                        {item.category.replace('-', ' ')}
+                        {item.category.replace("-", " ")}
                       </span>
                     </td>
                     <td className="p-4 font-bold">₹{item.price}</td>
                     <td className="p-4">
                       <button
-                        onClick={() => toggleAvailability(item._id, item.available)}
-                        className={`flex items-center gap-2 px-3 py-1 rounded-full ${item.available
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-red-100 text-red-800'
-                          }`}
+                        onClick={() =>
+                          toggleAvailability(item._id, item.available)
+                        }
+                        className={`flex items-center gap-2 px-3 py-1 rounded-full ${
+                          item.available
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
                       >
                         {item.available ? <FaToggleOn /> : <FaToggleOff />}
-                        {item.available ? 'Available' : 'Out of Stock'}
+                        {item.available ? "Available" : "Out of Stock"}
                       </button>
                     </td>
                     <td className="p-4">
@@ -251,27 +282,27 @@ const AdminMenu = () => {
 // Menu Modal Component
 const MenuModal = ({ item, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
-    name: item?.name || '',
-    description: item?.description || '',
-    price: item?.price || '',
-    category: item?.category || 'starters',
-    spicyLevel: item?.spicyLevel || 'medium',
+    name: item?.name || "",
+    description: item?.description || "",
+    price: item?.price || "",
+    category: item?.category || "starters-non-veg",
+    spicyLevel: item?.spicyLevel || "medium",
     preparationTime: item?.preparationTime || 15,
-    image: null
+    image: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      image: e.target.files[0]
+      image: e.target.files[0],
     });
   };
 
@@ -280,58 +311,59 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
     setIsSubmitting(true);
 
     const formDataToSend = new FormData();
-    Object.keys(formData).forEach(key => {
-      if (key === 'image' && formData[key]) {
-        formDataToSend.append('image', formData[key]);
-      } else if (key !== 'image') {
+    Object.keys(formData).forEach((key) => {
+      if (key === "image" && formData[key]) {
+        formDataToSend.append("image", formData[key]);
+      } else if (key !== "image") {
         formDataToSend.append(key, formData[key]);
       }
     });
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const url = item
         ? `https://happyfamilyrestaurant.onrender.com/api/menu/${item._id}`
-        : 'https://happyfamilyrestaurant.onrender.com/api/menu';
+        : "https://happyfamilyrestaurant.onrender.com/api/menu";
 
-      const method = item ? 'PUT' : 'POST';
+      const method = item ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: formDataToSend
+        body: formDataToSend,
       });
 
       if (response.ok) {
-        toast.success(`Menu item ${item ? 'updated' : 'added'} successfully`);
+        toast.success(`Menu item ${item ? "updated" : "added"} successfully`);
         onSuccess();
       } else {
         const error = await response.json();
-        toast.error(error.error || 'Operation failed');
+        toast.error(error.error || "Operation failed");
       }
     } catch (error) {
-      toast.error('Network error');
+      toast.error("Network error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const categories = [
-    { value: 'starters', label: 'Starters' },
-    { value: 'biryanis', label: 'Biryanis' },
-    { value: 'main-course', label: 'Main Course' },
-
-    { value: 'soft-drinks', label: 'Soft Drinks' },
-    { value: 'specials', label: 'Specials' }
+    { value: "starters-non-veg", label: "Starters-Non VEG" },
+    { value: "starters-veg", label: "Starters - VEG" },
+    { value: "roties", label: "Roties" },
+    { value: "biryanis", label: "Biryanis" },
+    { value: "main-course", label: "Main Course" },
+    { value: "soft-drinks", label: "Soft Drinks" },
+    { value: "specials", label: "Specials" },
   ];
 
   const spiceLevels = [
-    { value: 'mild', label: 'Mild' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'spicy', label: 'Spicy' },
-    { value: 'extra-spicy', label: 'Extra Spicy' }
+    { value: "mild", label: "Mild" },
+    { value: "medium", label: "Medium" },
+    { value: "spicy", label: "Spicy" },
+    { value: "extra-spicy", label: "Extra Spicy" },
   ];
 
   return (
@@ -343,7 +375,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
       >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">
-            {item ? 'Edit Menu Item' : 'Add New Menu Item'}
+            {item ? "Edit Menu Item" : "Add New Menu Item"}
           </h2>
           <button
             onClick={onClose}
@@ -404,7 +436,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
                 className="w-full p-3 border rounded-lg"
                 required
               >
-                {categories.map(cat => (
+                {categories.map((cat) => (
                   <option key={cat.value} value={cat.value}>
                     {cat.label}
                   </option>
@@ -420,7 +452,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
                 onChange={handleChange}
                 className="w-full p-3 border rounded-lg"
               >
-                {spiceLevels.map(level => (
+                {spiceLevels.map((level) => (
                   <option key={level.value} value={level.value}>
                     {level.label}
                   </option>
@@ -475,7 +507,7 @@ const MenuModal = ({ item, onClose, onSuccess }) => {
               disabled={isSubmitting}
               className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-dark disabled:opacity-50"
             >
-              {isSubmitting ? 'Saving...' : item ? 'Update Item' : 'Add Item'}
+              {isSubmitting ? "Saving..." : item ? "Update Item" : "Add Item"}
             </button>
           </div>
         </form>
