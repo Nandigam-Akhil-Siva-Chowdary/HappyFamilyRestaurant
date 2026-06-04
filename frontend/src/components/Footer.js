@@ -13,13 +13,13 @@ const Footer = () => {
               Serving delicious homemade food since 2010. Experience the taste of tradition.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-primary">
+              <a href="https://www.facebook.com/" className="text-gray-300 hover:text-primary">
                 <FaFacebook size={20} />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary">
+              <a href="www.instagram.com" className="text-gray-300 hover:text-primary">
                 <FaInstagram size={20} />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary">
+              <a href="www.x.com" className="text-gray-300 hover:text-primary">
                 <FaTwitter size={20} />
               </a>
             </div>
@@ -49,9 +49,9 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><a href="/menu" className="text-gray-300 hover:text-primary">Menu</a></li>
-              <li><a href="/#about" className="text-gray-300 hover:text-primary">About Us</a></li>
+              <li><a href="/about" className="text-gray-300 hover:text-primary">About Us</a></li>
               <li><a href="/contact" className="text-gray-300 hover:text-primary">Contact</a></li>
-              <li><a href="/#chefs" className="text-gray-300 hover:text-primary">Our Chefs</a></li>
+              <li><a href="/chefs" className="text-gray-300 hover:text-primary">Our Chefs</a></li>
             </ul>
           </div>
 
